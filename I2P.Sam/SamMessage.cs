@@ -115,13 +115,24 @@ namespace I2P.Sam
 
 			foreach (var arg in arguments)
 			{
-				if (arg.Length != 2)
+				if (arg.Length != 1 && arg.Length != 2)
 				{
-					throw new ArgumentException("Every array in arguments must be of length 2.", "arguments");
+					throw new ArgumentException("Every array in arguments must be at of length 1 or 2.", "arguments");
 				}
-				if (this[arg[0].ToUpper()] != arg[1])
+				// Only check for existance
+				if(arg.Length == 1)
 				{
-					return false;
+					if (this[arg[0].ToUpper()] == null)
+					{
+						return false;
+					}
+				}
+				else
+				{
+					if (this[arg[0].ToUpper()] != arg[1])
+					{
+						return false;
+					}
 				}
 			}
 

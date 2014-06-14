@@ -10,9 +10,15 @@ namespace I2P.Sam
 	{
 		static void Main(string[] args)
 		{
+			// Create new SAM bridge interface
 			SamBridge bridge = new SamBridge();
-
 			bridge.Connect();
+
+			// Naming lookup supports punycode
+			var pubKey = bridge.LookUp("😺😺😺.i2p");
+
+			// Generate a key pair.
+			var keypair = bridge.GenerateKeyPair();
 		}
 	}
 }
